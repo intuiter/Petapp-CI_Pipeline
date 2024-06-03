@@ -26,7 +26,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        //git branch: 'master', url: 'https://github.com/intuiter/ci_pipeline.git'
+        //git branch: 'master', url: 'https://github.com/intuiter/Petapp-CI_pipeline.git'
       }
     }
         stage ('Build jar') {
