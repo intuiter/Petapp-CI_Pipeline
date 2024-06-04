@@ -21,14 +21,8 @@ pipeline {
 
 
     stages {
-
-    stage('Checkout') {
-      steps {
-        sh 'echo passed'
-        //git branch: 'master', url: 'https://github.com/intuiter/Petapp-CI_pipeline.git'
-      }
-    }
-        stage ('Build jar') {
+    
+        stage ('Build jar-Maven') {
             steps {  
                 echo 'Building jar' 
                 script {
@@ -50,7 +44,7 @@ pipeline {
       }
     }
         
-        stage('Stage Artifacts to Jfrog') {
+        stage('Uploads Artifacts to Jfrog') {
                 steps {
                     script {
                         def server = Artifactory.server 'jfrog-serve' 
@@ -120,7 +114,7 @@ pipeline {
                 }
             } 
         }
-        stage ('Trigger cd pipeline') {
+        stage ('Triggers cd pipeline') {
             steps {  
                 echo 'Triggering cd pipeline' 
                 script {
