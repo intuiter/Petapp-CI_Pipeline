@@ -8,7 +8,6 @@ pipeline {
                 AWS_ACCESS_KEY_ID = credentials('jenkins-awsaccesskeys')
                 AWS_SECRET_ACCESS_KEY = credentials('jenkins-secretaccesskeys')
                 DOCKERHUB_USERNAME = "medha754"
-                APP_NAME = "petclinic-01"
                 IMAGE_TAG = "${BUILD_NUMBER}"
                 ECRURL = "https://818104450483.dkr.ecr.us-east-1.amazonaws.com/pc-ecr"
                 ECR_REGISTRY = "818104450483.dkr.ecr.us-east-1.amazonaws.com/pc-ecr"
@@ -42,7 +41,7 @@ pipeline {
 
         stage('Code Analysis with Sonarqube') {
       environment {
-        SONAR_URL = "http://18.234.88.90:9000"
+        SONAR_URL = "http://52.90.101.78:9000"
       }
       steps {
         withCredentials([string(credentialsId: 'sonar-cred', variable: 'SONAR_TOKEN')]) {
@@ -126,7 +125,7 @@ pipeline {
                 echo 'Triggering cd pipeline' 
                 script {
                         sh """
-                                curl http://34.227.49.54:8080/job/CD-pipeline/buildWithParameters?token=gitops-token \
+                                curl http://54.234.255.189:8080/job/CD-pipeline/buildWithParameters?token=gitops-token \
                                     --user admin:11978b8123651c6e39ea506ff1b02d9c95 \
                                     --data IMAGE_TAG=${IMAGE_TAG} --data verbosity=high \
                                     -H content-type:application/x-www-form-urlencoded \
