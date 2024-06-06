@@ -35,7 +35,7 @@ pipeline {
 
         stage('Code Analysis with Sonarqube') {
       environment {
-        SONAR_URL = "http://54.164.176.215:9000"
+        SONAR_URL = "http://54.82.21.83:9000"
       }
       steps {
         withCredentials([string(credentialsId: 'sonar-cred', variable: 'SONAR_TOKEN')]) {
@@ -119,7 +119,7 @@ pipeline {
                 echo 'Triggering cd pipeline' 
                 script {
                         sh """
-                                curl http://3.95.23.78:8080/job/CD-pipeline/buildWithParameters?token=gitops-token\
+                                curl http://54.242.180.62:8080/job/CD-pipeline/buildWithParameters?token=gitops-token\
                                     --user admin:11978b8123651c6e39ea506ff1b02d9c95 \
                                     --data IMAGE_TAG=${IMAGE_TAG} --data verbosity=high \
                                     -H content-type:application/x-www-form-urlencoded \
